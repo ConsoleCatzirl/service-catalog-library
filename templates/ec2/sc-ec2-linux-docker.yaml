@@ -23,7 +23,7 @@ Metadata:
 Mappings:
   AMIs:
     AmazonLinuxDocker:
-      AmiId: "ami-075e5e9d6946dcc2e"  # https://github.com/Sage-Bionetworks-IT/packer-amazonlinux-docker/tree/master
+      AmiId: "ami-0199f2d4739bba0b6"  # https://github.com/Sage-Bionetworks-IT/packer-amazonlinux-docker/tree/master
   AccountToImportParams:
     'Fn::Transform':
       Name: 'AWS::Include'
@@ -176,7 +176,7 @@ Resources:
         set_env_vars:
           files:
             /opt/sage/bin/make_env_vars_file.sh:
-              source: "https://raw.githubusercontent.com/Sage-Bionetworks/service-catalog-utils/v1.0.5/linux/opt/sage/bin/make_env_vars_file.sh"
+              source: "https://raw.githubusercontent.com/Sage-Bionetworks/service-catalog-utils/v2.1.0/linux/opt/sage/bin/make_env_vars_file.sh"
               mode: "00744"
               owner: "root"
               group: "root"
