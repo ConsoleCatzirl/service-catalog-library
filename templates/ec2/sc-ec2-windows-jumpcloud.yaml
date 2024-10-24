@@ -163,6 +163,16 @@ Resources:
                   - ' -JumpCloudConnectKey '
                   - Fn::Transform: {"Name": "SsmParam", "Parameters": {"Type": "SecureString", "Name": "/infra/JcConnectKey"}}
                   - ' > C:\scripts\install-jc-agent.log'
+        disable_pw_expiry:
+          commands:
+            01_disable_expiry:
+              command: !Join
+                - '; '
+                - - 'Powershell.exe Set-ExecutionPolicy Bypass -Force'
+                  - 'Powershell.exe Install-Module -Name "Microsoft.Graph" -Force'
+                  - 'Powershell.exe Connect-MgGraph -Scopes "User.ReadWrite.All","Group.ReadWrite.All"'
+                  - 'Powershell.exe Get-MGuser -All | Update-MgUser -PasswordPolicies DisablePasswordExpiration'
+
     Properties:
       ImageId: 'ami-08079232459aa7414'    # https://github.com/Sage-Bionetworks-IT/packer-winserver-2022/releases/tag/v0.0.1
       InstanceType: !Ref 'WindowsInstanceType'
